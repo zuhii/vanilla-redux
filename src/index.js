@@ -1,27 +1,12 @@
-import { createStore } from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './components/App';
+import { Provider } from 'react-redux';
+import store from './store';
 
-const add = document.getElementById('add');
-const minus = document.getElementById('minus');
-const number = document.querySelector('span');
-
-const countModifier = (count = 0, action) => {
-  console.log(count, action);
-  if (action.type === 'ADD') {
-    return count + 1;
-  } else if (action.type === 'MINUS') {
-    return count - 1;
-  } else {
-    return count;
-  }
-};
-
-const countStore = createStore(countModifier);
-
-countStore.dispatch({ type: 'ADD' });
-countStore.dispatch({ type: 'ADD' });
-countStore.dispatch({ type: 'ADD' });
-countStore.dispatch({ type: 'ADD' });
-countStore.dispatch({ type: 'ADD' });
-countStore.dispatch({ type: 'MINUS' });
-
-console.log(countStore.getState());
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
